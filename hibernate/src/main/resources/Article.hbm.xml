@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="model.Article" table="article" schema="public" catalog="TP5">
+        <id name="titreart">
+            <column name="titreart" sql-type="varchar(250)" length="250"/>
+        </id>
+        <property name="nbrpages">
+            <column name="nbrpages" sql-type="integer" not-null="true"/>
+        </property>
+        <property name="datesoumission">
+            <column name="datesoumission" sql-type="timestamp"/>
+        </property>
+        <many-to-one name="chercheurByAuteur" class="model.Chercheur">
+            <column name="auteur" not-null="true"/>
+        </many-to-one>
+        <many-to-one name="chercheurByCoauteur" class="model.Chercheur">
+            <column name="coauteur" not-null="true"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

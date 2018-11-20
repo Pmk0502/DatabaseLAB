@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="model.Departement" table="departement" schema="public" catalog="TP5">
+        <id name="nomdpt">
+            <column name="nomdpt" sql-type="varchar(20)" length="20"/>
+        </id>
+        <property name="datecreationdpt">
+            <column name="datecreationdpt" sql-type="date" />
+        </property>
+        <property name="adressedpt">
+            <column name="adressedpt" sql-type="varchar(20)" length="20" />
+        </property>
+        <property name="telephonedpt">
+            <column name="telephonedpt" sql-type="varchar(20)" length="20" />
+        </property>
+        <set name="equipesByNomdpt" inverse="true">
+            <key>
+                <column name="nomdpt"/>
+            </key>
+            <one-to-many not-found="ignore" class="model.Equipe"/>
+        </set>
+    </class>
+</hibernate-mapping>

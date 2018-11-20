@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="model.Chercheur" table="chercheur" schema="public" catalog="TP5">
+        <id name="matriculecher">
+            <column name="matriculecher" sql-type="char(6)" length="6"/>
+        </id>
+        <property name="prenomcher">
+            <column name="prenomcher" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="nomcher">
+            <column name="nomcher" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="positioncher">
+            <column name="positioncher" sql-type="varchar(10)" length="10" not-null="true"/>
+        </property>
+        <property name="salairecher">
+            <column name="salairecher" sql-type="integer" not-null="true"/>
+        </property>
+        <many-to-one name="equipeByNomeq" class="model.Equipe">
+            <column name="nomeq" not-null="true"/>
+        </many-to-one>
+        <set name="articlesByMatriculecher" inverse="true">
+            <key>
+                <column name="auteur" not-null="true"/>
+            </key>
+            <one-to-many not-found="ignore" class="model.Article"/>
+        </set>
+        <set name="articlesByMatriculecher_0" inverse="true">
+            <key>
+                <column name="coauteur" not-null="true"/>
+            </key>
+            <one-to-many not-found="ignore" class="model.Article"/>
+        </set>
+    </class>
+</hibernate-mapping>

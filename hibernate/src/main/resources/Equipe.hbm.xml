@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="model.Equipe" table="equipe" schema="public" catalog="TP5">
+        <id name="nomeq">
+            <column name="nomeq" sql-type="varchar(20)" length="20"/>
+        </id>
+        <property name="datecreationeq">
+            <column name="datecreationeq" sql-type="date" />
+        </property>
+        <property name="nbrprojets">
+            <column name="nbrprojets" sql-type="integer" />
+        </property>
+        <property name="responsable">
+            <column name="responsable" sql-type="varchar(20)" length="20" />
+        </property>
+        <many-to-one name="departementByNomdpt" class="model.Departement">
+            <column name="nomdpt"/>
+        </many-to-one>
+        <set name="chercheursByNomeq" inverse="true">
+            <key>
+                <column name="nomeq" not-null="true"/>
+            </key>
+            <one-to-many not-found="ignore" class="model.Chercheur"/>
+        </set>
+    </class>
+</hibernate-mapping>
