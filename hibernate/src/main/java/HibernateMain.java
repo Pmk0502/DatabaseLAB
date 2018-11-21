@@ -91,6 +91,7 @@ public class HibernateMain {
 
 
         System.out.println("*********************** Requete 5 **************************");
+
         Transaction t5 = currentSession.beginTransaction();
         try {
             String hql5 ="delete from Chercheur c WHERE c.matriculecher in (select a.chercheurByAuteur from Article a where c.matriculecher=a.chercheurByAuteur and a.datesoumission='2007-05-16')";
@@ -103,6 +104,7 @@ public class HibernateMain {
         }
 
         System.out.println("*********************** Requete 6 **************************");
+
         Departement deptPhysique = currentSession.get(Departement.class, "Physique");
         if (deptPhysique != null) {
             deptPhysique.setAdressedpt("Quebec");
@@ -116,6 +118,7 @@ public class HibernateMain {
         }
 
         System.out.println("*********************** Requete 8 **************************");
+
         Departement deptMedecine = new Departement();
         deptMedecine.setNomdpt("Medecine");
         deptMedecine.setAdressedpt("Gaspesie");
