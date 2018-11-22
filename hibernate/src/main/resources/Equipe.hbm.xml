@@ -24,7 +24,7 @@
             <key>
                 <column name="nomeq" not-null="true"/>
             </key>
-            <one-to-many not-found="ignore" class="model.Chercheur"/>
+            <one-to-many not-found="ignore" class="model.Chercheur" />
         </set>
     </class>
 </hibernate-mapping>

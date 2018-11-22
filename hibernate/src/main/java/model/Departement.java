@@ -1,7 +1,9 @@
 package model;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 
 
 public class Departement {
@@ -9,7 +11,7 @@ public class Departement {
     private Date datecreationdpt;
     private String adressedpt;
     private String telephonedpt;
-    private Collection<Equipe> equipesByNomdpt;
+    private Collection<Equipe> equipesByNomdpt = new HashSet<>();
 
 
 

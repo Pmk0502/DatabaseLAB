@@ -7,6 +7,7 @@
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
           <factory-entry name="NewPersistenceUnit" value="83297c31-a2d9-43d4-a341-12a73c47721e" />
+          <factory-entry name="tp5" value="769d8853-0b69-44a7-82e2-779249fa064c" />
         </datasource-mapping>
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/resources/META-INF/persistence.xml" />
       </configuration>

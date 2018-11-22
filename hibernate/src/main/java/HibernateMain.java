@@ -3,7 +3,6 @@ import model.Article;
 import model.Chercheur;
 import model.Departement;
 import model.Equipe;
-import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -14,6 +13,8 @@ import org.hibernate.query.Query;
 
 import javax.persistence.TypedQuery;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class HibernateMain {
@@ -78,8 +79,7 @@ public class HibernateMain {
 
         Transaction t4 = currentSession.beginTransaction();
         try {
-            String hql4 = "delete from Article a where a.chercheurByAuteur in (select c.matriculecher from Chercheur c, Equipe e, Departement d where  a.chercheurByAuteur=c.matriculecher " +
-                    "and c.equipeByNomeq=e.nomeq  and e.departementByNomdpt=d.nomdpt and d.nomdpt='Mathematiques')";
+            String hql4 = "delete from Article a where a.chercheurByAuteur in (select c.matriculecher from Chercheur c where  a.chercheurByAuteur.equipeByNomeq.departementByNomdpt='Mathematiques')";
 
             Query q4 = currentSession.createQuery(hql4);
             System.out.println(q4.executeUpdate());
@@ -120,16 +120,20 @@ public class HibernateMain {
         System.out.println("*********************** Requete 8 **************************");
 
         Departement deptMedecine = new Departement();
+        Equipe pediatreTeam  = new Equipe();
+
+        pediatreTeam.setNomeq("Pediatre");
+
+
         deptMedecine.setNomdpt("Medecine");
         deptMedecine.setAdressedpt("Gaspesie");
         deptMedecine.setDatecreationdpt(Date.valueOf("2018-03-01"));
-        Equipe pediatreTeam  = new Equipe();
-        pediatreTeam.setNomeq("Pediatre");
         pediatreTeam.setDepartementByNomdpt(deptMedecine);
+        deptMedecine.getEquipesByNomdpt().add(pediatreTeam);
+
         Transaction t8 = currentSession.beginTransaction();
         try {
-            currentSession.save(deptMedecine);
-            currentSession.save(pediatreTeam);
+            currentSession.persist(deptMedecine);
             t8.commit();
         } catch (Exception e) {
             e.printStackTrace();

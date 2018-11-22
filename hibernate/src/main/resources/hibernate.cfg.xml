@@ -8,19 +8,11 @@
         <property name="connection.url">jdbc:postgresql://localhost:5432/TP5</property>
         <property name="connection.username">postgres</property>
         <property name="connection.password">passer</property>
-        <property name="show_sql">true</property>
 
         <mapping resource="Article.hbm.xml"/>
         <mapping resource="Chercheur.hbm.xml"/>
         <mapping resource="Departement.hbm.xml"/>
         <mapping resource="Equipe.hbm.xml"/>
 
-
-
-        <!-- <property name="connection.username"/> -->
-        <!-- <property name="connection.password"/> -->
-
-        <!-- DB schema will be updated if needed -->
-        <!-- <property name="hbm2ddl.auto">update</property> -->
     </session-factory>
 </hibernate-configuration>

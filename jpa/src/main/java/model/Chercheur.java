@@ -5,6 +5,7 @@ import java.util.Collection;
 
 @Entity
 public class Chercheur {
+
     private String matriculecher;
     private String prenomcher;
     private String nomcher;

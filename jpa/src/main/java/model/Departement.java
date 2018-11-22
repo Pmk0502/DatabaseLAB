@@ -2,6 +2,7 @@ package model;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Collection;
 
 @Entity
@@ -10,7 +11,7 @@ public class Departement {
     private Date datecreationdpt;
     private String adressedpt;
     private String telephonedpt;
-    private Collection<Equipe> equipesByNomdpt;
+    private Collection<Equipe> equipesByNomdpt = new ArrayList<>();
 
     @Id
     @Column(name = "nomdpt", nullable = false, length = 20)
@@ -49,7 +50,7 @@ public class Departement {
         this.telephonedpt = telephonedpt;
     }
 
-    @OneToMany(mappedBy = "departementByNomdpt")
+    @OneToMany(mappedBy = "departementByNomdpt", cascade = CascadeType.PERSIST)
     public Collection<Equipe> getEquipesByNomdpt() {
         return equipesByNomdpt;
     }

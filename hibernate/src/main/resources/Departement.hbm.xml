@@ -17,7 +17,7 @@
         <property name="telephonedpt">
             <column name="telephonedpt" sql-type="varchar(20)" length="20" />
         </property>
-        <set name="equipesByNomdpt" inverse="true">
+        <set name="equipesByNomdpt" cascade="persist" inverse="true">
             <key>
                 <column name="nomdpt"/>
             </key>
